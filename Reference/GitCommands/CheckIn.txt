@@ -1,0 +1,34 @@
+--For ACDP
+git checkout -b "To Create New Branch"
+git checkout "To switch to existing Branch"
+git pull --all
+git merge develop
+git status
+git add .
+git status
+git commit -m "Initial checkin"
+git push -u origin "Branch name"
+
+
+--For AVP NextGen
+git checkout -b "Name of Branch"
+git pull --all
+git merge GAdevelop
+git status
+git add .
+git status
+git commit -m "Initial checkin"
+git push -u origin "Branch name"
+
+--Command below is used to connect to remote URL (from Local folder to repo in DevOps)
+git remote add origin <http url for cloning the repo>
+
+
+git@DELETE /c/local/branch (main)
+$ git branch -a
+* main
+new-branch
+old-branch
+git@DELETE /c/local/branch (main)
+$ git branch --delete main
+error: Cannot delete branch 'main' checked out at 'C:/git/delete'
