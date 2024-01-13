@@ -8,8 +8,7 @@ git status
 git commit -m "Initial checkin"
 git push -u origin "Branch name"
 
----------
-
+--Git config commands
 git config --global user.name “Rohan Chauhan”
 git config --global user.email “rohan.chauhan.in18@gmail.com”
 git config --list
