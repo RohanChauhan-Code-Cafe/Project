@@ -2,6 +2,7 @@ git checkout -b "To Create New Branch"
 git checkout "To switch to existing Branch"
 git pull --all
 git merge develop
+
 git status
 git add .
 git status
@@ -9,7 +10,7 @@ git commit -m "Initial checkin"
 git push -u origin "Branch name"
 
 --Git config commands
-git config --global user.name “Rohan Chauhan”
-git config --global user.email “rohan.chauhan.in18@gmail.com”
+git config --global user.name “username”
+git config --global user.email “user@email.com”
 git config --list
 git config remote.origin.url
