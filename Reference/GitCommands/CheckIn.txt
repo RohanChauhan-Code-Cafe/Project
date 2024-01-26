@@ -1,15 +1,20 @@
+--1. To create a branch
 git checkout -b "To Create New Branch"
 git checkout "To switch to existing Branch"
+
+--2. Get latest code from repos & merge
 git pull --all
 git merge develop
 
+--3. Get latest code from repos
+git pull --all
 git status
 git add .
 git status
 git commit -m "Initial checkin"
 git push -u origin "Branch name"
 
---Git config commands
+--4. Git config commands
 git config --global user.name “username”
 git config --global user.email “user@email.com”
 git config --list
