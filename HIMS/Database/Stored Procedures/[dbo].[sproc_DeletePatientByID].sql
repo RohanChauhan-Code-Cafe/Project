@@ -15,7 +15,9 @@ CREATE PROC [dbo].[sproc_DeletePatientByID]
 AS
 BEGIN
 
-DELETE FROM [dbo].[Patient] where PatientID=@PatientID
+
+DELETE FROM [dbo].[Patient] 
+where PatientID=@PatientID
 
 END
 GO
