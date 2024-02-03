@@ -190,6 +190,7 @@ C:\Personal\RC\Project\HIMS\HIMSWebApp\HIMSWebApp\bin\roslyn\vbc.exe.config
 C:\Personal\RC\Project\HIMS\HIMSWebApp\HIMSWebApp\bin\roslyn\vbc.rsp
 C:\Personal\RC\Project\HIMS\HIMSWebApp\HIMSWebApp\bin\roslyn\VBCSCompiler.exe
 C:\Personal\RC\Project\HIMS\HIMSWebApp\HIMSWebApp\bin\roslyn\VBCSCompiler.exe.config
+C:\Personal\RC\Project\HIMS\HIMSWebApp\HIMSWebApp\bin\AjaxMin.dll
 C:\Personal\RC\Project\HIMS\HIMSWebApp\HIMSWebApp\bin\Antlr3.Runtime.dll
 C:\Personal\RC\Project\HIMS\HIMSWebApp\HIMSWebApp\bin\Humanizer.dll
 C:\Personal\RC\Project\HIMS\HIMSWebApp\HIMSWebApp\bin\Microsoft.Bcl.AsyncInterfaces.dll
@@ -315,4 +316,3 @@ C:\Personal\RC\Project\HIMS\HIMSWebApp\HIMSWebApp\obj\Debug\HIMSWebApp.csproj.Co
 C:\Personal\RC\Project\HIMS\HIMSWebApp\HIMSWebApp\obj\Debug\HIMSWebApp.csproj.CopyComplete
 C:\Personal\RC\Project\HIMS\HIMSWebApp\HIMSWebApp\obj\Debug\HIMSWebApp.dll
 C:\Personal\RC\Project\HIMS\HIMSWebApp\HIMSWebApp\obj\Debug\HIMSWebApp.pdb
-C:\Personal\RC\Project\HIMS\HIMSWebApp\HIMSWebApp\bin\AjaxMin.dll
