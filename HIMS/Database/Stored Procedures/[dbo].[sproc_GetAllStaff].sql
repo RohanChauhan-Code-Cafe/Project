@@ -1,0 +1,38 @@
+USE [HIMS]
+GO
+
+DROP PROCEDURE [dbo].[sproc_GetAllStaff]
+GO
+
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROC [dbo].[sproc_GetAllStaff]
+AS
+BEGIN
+
+SELECT 
+	 [StaffID]
+	,[Firstname]
+	,[LastName]
+	,[DOB]
+	,[Address]
+	,[City]
+	,[State]
+	,[Country]
+	,[Zip]
+	,[MobileNumber]
+	,[IsActive]
+	,[DateAdded]
+	,[AddedBy]
+	,[DateLastModified]
+	,[ModifiedBy]
+FROM [dbo].[Staff] WITH (NOLOCK)
+
+END
+GO
+
+
