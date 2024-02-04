@@ -1,8 +1,8 @@
 USE [HIMS]
 GO
 
-IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[Staff]') AND type in (N'U'))
-DROP TABLE [dbo].[Staff]
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[Doctor]') AND type in (N'U'))
+DROP TABLE [dbo].[Doctor]
 GO
 
 SET ANSI_NULLS ON
@@ -11,8 +11,8 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 
-CREATE TABLE [dbo].[Staff](
-	[StaffID] [int] IDENTITY(1,1) NOT NULL,
+CREATE TABLE [dbo].[Doctor](
+	[DoctorID] [int] IDENTITY(1,1) NOT NULL,
 	[Firstname] [nvarchar](100) NOT NULL,
 	[LastName] [nvarchar](100) NOT NULL,
 	[DOB] [datetime] NOT NULL,
@@ -29,24 +29,24 @@ CREATE TABLE [dbo].[Staff](
 	[ModifiedBy] [nvarchar](100) NOT NULL,
 PRIMARY KEY CLUSTERED 
 (
-	[StaffID] ASC
+	[DoctorID] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
 
-ALTER TABLE [dbo].[Staff] ADD  DEFAULT ((1)) FOR [IsActive]
+ALTER TABLE [dbo].[Doctor] ADD  DEFAULT ((1)) FOR [IsActive]
 GO
 
-ALTER TABLE [dbo].[Staff] ADD  DEFAULT (getdate()) FOR [DateAdded]
+ALTER TABLE [dbo].[Doctor] ADD  DEFAULT (getdate()) FOR [DateAdded]
 GO
 
-ALTER TABLE [dbo].[Staff] ADD  DEFAULT ('Admin') FOR [AddedBy]
+ALTER TABLE [dbo].[Doctor] ADD  DEFAULT ('Admin') FOR [AddedBy]
 GO
 
-ALTER TABLE [dbo].[Staff] ADD  DEFAULT (getdate()) FOR [DateLastModified]
+ALTER TABLE [dbo].[Doctor] ADD  DEFAULT (getdate()) FOR [DateLastModified]
 GO
 
-ALTER TABLE [dbo].[Staff] ADD  DEFAULT ('Admin') FOR [ModifiedBy]
+ALTER TABLE [dbo].[Doctor] ADD  DEFAULT ('Admin') FOR [ModifiedBy]
 GO
 
 

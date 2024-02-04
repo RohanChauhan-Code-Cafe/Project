@@ -1,7 +1,7 @@
 USE [HIMS]
 GO
 
-DROP PROCEDURE [dbo].[sproc_InsertStaff]
+DROP PROCEDURE [dbo].[sproc_InsertDoctor]
 GO
 
 SET ANSI_NULLS ON
@@ -10,7 +10,7 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 
-CREATE PROC [dbo].[sproc_InsertStaff]
+CREATE PROC [dbo].[sproc_InsertDoctor]
 @Firstname [nvarchar](100),
 @LastName [nvarchar](100),
 @DOB [datetime],
@@ -24,7 +24,7 @@ CREATE PROC [dbo].[sproc_InsertStaff]
 AS
 BEGIN
 
-INSERT INTO [dbo].[Staff]
+INSERT INTO [dbo].[Doctor]
 (
 	 [Firstname]
 	,[LastName]

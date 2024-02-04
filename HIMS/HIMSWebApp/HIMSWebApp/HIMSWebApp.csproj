@@ -180,14 +180,14 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PatientController.cs" />
-    <Compile Include="Controllers\StaffController.cs" />
+    <Compile Include="Controllers\DoctorController.cs" />
     <Compile Include="DAL\PatientDAL.cs" />
-    <Compile Include="DAL\StaffDAL.cs" />
+    <Compile Include="DAL\DoctorDAL.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Patient.cs" />
-    <Compile Include="Models\Staff.cs" />
+    <Compile Include="Models\Doctor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -250,11 +250,11 @@
     <Content Include="Views\Patient\Create.cshtml" />
     <Content Include="Views\Patient\Edit.cshtml" />
     <Content Include="Views\Patient\Delete.cshtml" />
-    <Content Include="Views\Staff\Index.cshtml" />
-    <Content Include="Views\Staff\Details.cshtml" />
-    <Content Include="Views\Staff\Create.cshtml" />
-    <Content Include="Views\Staff\Edit.cshtml" />
-    <Content Include="Views\Staff\Delete.cshtml" />
+    <Content Include="Views\Doctor\Index.cshtml" />
+    <Content Include="Views\Doctor\Details.cshtml" />
+    <Content Include="Views\Doctor\Create.cshtml" />
+    <Content Include="Views\Doctor\Edit.cshtml" />
+    <Content Include="Views\Doctor\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -8,38 +8,38 @@ using HIMSWebApp.Models;
 
 namespace HIMSWebApp.Controllers
 {
-    public class  StaffController : Controller
+    public class  DoctorController : Controller
     {
-        StaffDAL ObjStaffDAL = new StaffDAL();
+        DoctorDAL ObjDoctorDAL = new DoctorDAL();
 
-        // GET: Staff
+        // GET: Doctor
         public ActionResult Index()
         {
-            var stafflist = ObjStaffDAL.GetAllStaffs();
-            return View(stafflist);
+            var Doctorlist = ObjDoctorDAL.GetAllDoctors();
+            return View(Doctorlist);
         }
 
-        // GET: Staff/Details/5
+        // GET: Doctor/Details/5
         public ActionResult Details(int id)
         {
-            var staff = ObjStaffDAL.GetStaffByID(id).FirstOrDefault();
-            return View(staff);
+            var Doctor = ObjDoctorDAL.GetDoctorByID(id).FirstOrDefault();
+            return View(Doctor);
         }
 
-        // GET: Staff/Create
+        // GET: Doctor/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Staff/Create
+        // POST: Doctor/Create
         [HttpPost]
-        public ActionResult Create(Staff objStaff)
+        public ActionResult Create(Doctor objDoctor)
         {
             try
             {
                 // TODO: Add insert logic here
-                ObjStaffDAL.InsertStaffs(objStaff);
+                ObjDoctorDAL.InsertDoctors(objDoctor);
                 return RedirectToAction("Index");
             }
             catch
@@ -48,21 +48,21 @@ namespace HIMSWebApp.Controllers
             }
         }
 
-        // GET: Staff/Edit/5
+        // GET: Doctor/Edit/5
         public ActionResult Edit(int id)
         {
-            var staff = ObjStaffDAL.GetStaffByID(id).FirstOrDefault();
-            return View(staff);
+            var Doctor = ObjDoctorDAL.GetDoctorByID(id).FirstOrDefault();
+            return View(Doctor);
         }
 
-        // POST: Staff/Edit/5
+        // POST: Doctor/Edit/5
         [HttpPost, ActionName("Edit")]
-        public ActionResult Edit(Staff ObjStaff)
+        public ActionResult Edit(Doctor ObjDoctor)
         {
             try
             {
                 // TODO: Add update logic here
-                ObjStaffDAL.UpdateStaffs(ObjStaff);
+                ObjDoctorDAL.UpdateDoctors(ObjDoctor);
                 return RedirectToAction("Index");
             }
             catch
@@ -71,21 +71,21 @@ namespace HIMSWebApp.Controllers
             }
         }
 
-        // GET: Staff/Delete/5
+        // GET: Doctor/Delete/5
         public ActionResult Delete(int id)
         {
-            var staff = ObjStaffDAL.GetStaffByID(id).FirstOrDefault();
-            return View(staff);
+            var Doctor = ObjDoctorDAL.GetDoctorByID(id).FirstOrDefault();
+            return View(Doctor);
         }
 
-        // POST: Staff/Delete/5
+        // POST: Doctor/Delete/5
         [HttpPost, ActionName("Delete")]
-        public ActionResult DeleteStaff(int id, FormCollection collection)
+        public ActionResult DeleteDoctor(int id, FormCollection collection)
         {
             try
             {
                 // TODO: Add delete logic here
-                ObjStaffDAL.DeleteStaffs(id);
+                ObjDoctorDAL.DeleteDoctors(id);
                 return RedirectToAction("Index");
             }
             catch

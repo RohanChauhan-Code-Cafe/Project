@@ -1,4 +1,4 @@
-﻿@model IEnumerable<HIMSWebApp.Models.Staff>
+﻿@model IEnumerable<HIMSWebApp.Models.Doctor>
 
 @{
     ViewBag.Title = "Index";
@@ -77,9 +77,9 @@
             @Html.DisplayFor(modelItem => item.IsActive)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.StaffID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.StaffID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.StaffID })
+            @Html.ActionLink("Edit", "Edit", new { id=item.DoctorID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.DoctorID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.DoctorID })
         </td>
     </tr>
 }

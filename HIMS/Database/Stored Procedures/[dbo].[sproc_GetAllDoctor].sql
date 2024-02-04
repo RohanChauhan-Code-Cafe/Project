@@ -1,7 +1,7 @@
 USE [HIMS]
 GO
 
-DROP PROCEDURE [dbo].[sproc_GetAllStaff]
+DROP PROCEDURE [dbo].[sproc_GetAllDoctor]
 GO
 
 SET ANSI_NULLS ON
@@ -10,12 +10,12 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 
-CREATE PROC [dbo].[sproc_GetAllStaff]
+CREATE PROC [dbo].[sproc_GetAllDoctor]
 AS
 BEGIN
 
 SELECT 
-	 [StaffID]
+	 [DoctorID]
 	,[Firstname]
 	,[LastName]
 	,[DOB]
@@ -30,7 +30,7 @@ SELECT
 	,[AddedBy]
 	,[DateLastModified]
 	,[ModifiedBy]
-FROM [dbo].[Staff] WITH (NOLOCK)
+FROM [dbo].[Doctor] WITH (NOLOCK)
 
 END
 GO

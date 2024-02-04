@@ -9,30 +9,30 @@ using HIMSWebApp.Models;
 
 namespace HIMSWebApp.DAL
 {
-    public class StaffDAL
+    public class DoctorDAL
     {
         string dbconnstring = ConfigurationManager.ConnectionStrings["dbconn"].ToString();
 
-        //Get all the Staffs
-        public List<Staff> GetAllStaffs()
+        //Get all the Doctors
+        public List<Doctor> GetAllDoctors()
         {
-            List<Staff> StaffList = new List<Staff>();
+            List<Doctor> DoctorList = new List<Doctor>();
             using (SqlConnection connection = new SqlConnection(dbconnstring))
             {
                 SqlCommand command = connection.CreateCommand();
                 command.CommandType = CommandType.StoredProcedure;
-                command.CommandText = "sproc_GetAllStaff";
+                command.CommandText = "sproc_GetAllDoctor";
                 SqlDataAdapter sqlDA = new SqlDataAdapter(command);
-                DataTable dtStaff = new DataTable();
+                DataTable dtDoctor = new DataTable();
                 connection.Open();
-                sqlDA.Fill(dtStaff);
+                sqlDA.Fill(dtDoctor);
                 connection.Close();
-                foreach (DataRow dr in dtStaff.Rows)
+                foreach (DataRow dr in dtDoctor.Rows)
                 {
-                    StaffList.Add(new Staff
+                    DoctorList.Add(new Doctor
                     {
 
-                        StaffID = Convert.ToInt32(dr["StaffID"]),
+                        DoctorID = Convert.ToInt32(dr["DoctorID"]),
                         Firstname = dr["Firstname"].ToString(),
                         Lastname = dr["LastName"].ToString(),
                         DOB = Convert.ToDateTime(dr["DOB"]),
@@ -48,27 +48,27 @@ namespace HIMSWebApp.DAL
 
             }
 
-            return StaffList;
+            return DoctorList;
         }
 
-        //Insert Staffs
-        public bool InsertStaffs(Staff Staff)
+        //Insert Doctors
+        public bool InsertDoctors(Doctor Doctor)
         {
 
             using (SqlConnection connection = new SqlConnection(dbconnstring))
             {
-                SqlCommand command = new SqlCommand("sproc_InsertStaff", connection);
+                SqlCommand command = new SqlCommand("sproc_InsertDoctor", connection);
                 command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.AddWithValue("@Firstname", Staff.Firstname);
-                command.Parameters.AddWithValue("@LastName", Staff.Lastname);
-                command.Parameters.AddWithValue("@DOB", Staff.DOB);
-                command.Parameters.AddWithValue("@Address", Staff.Address);
-                command.Parameters.AddWithValue("@City", Staff.City);
-                command.Parameters.AddWithValue("@State", Staff.State);
-                command.Parameters.AddWithValue("@Country", Staff.Country);
-                command.Parameters.AddWithValue("@Zip", Staff.Zip);
-                command.Parameters.AddWithValue("@MobileNumber", Staff.MobileNumber);
-                command.Parameters.AddWithValue("@IsActive", Staff.IsActive);
+                command.Parameters.AddWithValue("@Firstname", Doctor.Firstname);
+                command.Parameters.AddWithValue("@LastName", Doctor.Lastname);
+                command.Parameters.AddWithValue("@DOB", Doctor.DOB);
+                command.Parameters.AddWithValue("@Address", Doctor.Address);
+                command.Parameters.AddWithValue("@City", Doctor.City);
+                command.Parameters.AddWithValue("@State", Doctor.State);
+                command.Parameters.AddWithValue("@Country", Doctor.Country);
+                command.Parameters.AddWithValue("@Zip", Doctor.Zip);
+                command.Parameters.AddWithValue("@MobileNumber", Doctor.MobileNumber);
+                command.Parameters.AddWithValue("@IsActive", Doctor.IsActive);
 
                 connection.Open();
                 command.ExecuteNonQuery();
@@ -77,27 +77,27 @@ namespace HIMSWebApp.DAL
             return true;
         }
 
-        //Get Staff By ID
-        public List<Staff> GetStaffByID(int StaffID)
+        //Get Doctor By ID
+        public List<Doctor> GetDoctorByID(int DoctorID)
         {
-            List<Staff> StaffList = new List<Staff>();
+            List<Doctor> DoctorList = new List<Doctor>();
             using (SqlConnection connection = new SqlConnection(dbconnstring))
             {
                 SqlCommand command = connection.CreateCommand();
                 command.CommandType = CommandType.StoredProcedure;
-                command.CommandText = "sproc_GetStaffByID";
-                command.Parameters.AddWithValue("@StaffID", StaffID);
+                command.CommandText = "sproc_GetDoctorByID";
+                command.Parameters.AddWithValue("@DoctorID", DoctorID);
                 SqlDataAdapter sqlDA = new SqlDataAdapter(command);
-                DataTable dtStaff = new DataTable();
+                DataTable dtDoctor = new DataTable();
                 connection.Open();
-                sqlDA.Fill(dtStaff);
+                sqlDA.Fill(dtDoctor);
                 connection.Close();
-                foreach (DataRow dr in dtStaff.Rows)
+                foreach (DataRow dr in dtDoctor.Rows)
                 {
-                    StaffList.Add(new Staff
+                    DoctorList.Add(new Doctor
                     {
 
-                        StaffID = Convert.ToInt32(dr["StaffID"]),
+                        DoctorID = Convert.ToInt32(dr["DoctorID"]),
                         Firstname = dr["Firstname"].ToString(),
                         Lastname = dr["LastName"].ToString(),
                         DOB = Convert.ToDateTime(dr["DOB"]),
@@ -113,28 +113,28 @@ namespace HIMSWebApp.DAL
 
             }
 
-            return StaffList;
+            return DoctorList;
         }
 
         //Update Patient By ID
-        public bool UpdateStaffs(Staff Staff)
+        public bool UpdateDoctors(Doctor Doctor)
         {
 
             using (SqlConnection connection = new SqlConnection(dbconnstring))
             {
-                SqlCommand command = new SqlCommand("sproc_UpdateStaffByID", connection);
+                SqlCommand command = new SqlCommand("sproc_UpdateDoctorByID", connection);
                 command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.AddWithValue("@StaffID", Staff.StaffID);
-                command.Parameters.AddWithValue("@Firstname", Staff.Firstname);
-                command.Parameters.AddWithValue("@LastName", Staff.Lastname);
-                command.Parameters.AddWithValue("@DOB", Staff.DOB);
-                command.Parameters.AddWithValue("@Address", Staff.Address);
-                command.Parameters.AddWithValue("@City", Staff.City);
-                command.Parameters.AddWithValue("@State", Staff.State);
-                command.Parameters.AddWithValue("@Country", Staff.Country);
-                command.Parameters.AddWithValue("@Zip", Staff.Zip);
-                command.Parameters.AddWithValue("@MobileNumber", Staff.MobileNumber);
-                command.Parameters.AddWithValue("@IsActive", Staff.IsActive);
+                command.Parameters.AddWithValue("@DoctorID", Doctor.DoctorID);
+                command.Parameters.AddWithValue("@Firstname", Doctor.Firstname);
+                command.Parameters.AddWithValue("@LastName", Doctor.Lastname);
+                command.Parameters.AddWithValue("@DOB", Doctor.DOB);
+                command.Parameters.AddWithValue("@Address", Doctor.Address);
+                command.Parameters.AddWithValue("@City", Doctor.City);
+                command.Parameters.AddWithValue("@State", Doctor.State);
+                command.Parameters.AddWithValue("@Country", Doctor.Country);
+                command.Parameters.AddWithValue("@Zip", Doctor.Zip);
+                command.Parameters.AddWithValue("@MobileNumber", Doctor.MobileNumber);
+                command.Parameters.AddWithValue("@IsActive", Doctor.IsActive);
                 connection.Open();
                 command.ExecuteNonQuery();
                 connection.Close();
@@ -142,15 +142,15 @@ namespace HIMSWebApp.DAL
             return true;
         }
 
-        //Delete Staff By ID
-        public bool DeleteStaffs(int StaffID)
+        //Delete Doctor By ID
+        public bool DeleteDoctors(int DoctorID)
         {
 
             using (SqlConnection connection = new SqlConnection(dbconnstring))
             {
-                SqlCommand command = new SqlCommand("sproc_DeleteStaffByID", connection);
+                SqlCommand command = new SqlCommand("sproc_DeleteDoctorByID", connection);
                 command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.AddWithValue("@StaffID", StaffID);
+                command.Parameters.AddWithValue("@DoctorID", DoctorID);
                 connection.Open();
                 command.ExecuteNonQuery();
                 connection.Close();
