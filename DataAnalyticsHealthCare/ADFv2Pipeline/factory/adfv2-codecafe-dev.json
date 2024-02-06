@@ -1,0 +1,9 @@
+{
+	"name": "adfv2-codecafe-dev",
+	"location": "centralindia",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "cdc446f1-fe8c-447a-8a81-ddb7a54ebc4d",
+		"tenantId": "aeb34d0c-251c-451b-9775-bae6f388f8fc"
+	}
+}

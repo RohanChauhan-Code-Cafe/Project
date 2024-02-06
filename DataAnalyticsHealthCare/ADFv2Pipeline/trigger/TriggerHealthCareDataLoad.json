@@ -1,0 +1,24 @@
+{
+	"name": "TriggerHealthCareDataLoad",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Stopped",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "OnPremSQLServerToSnowFlake",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Minute",
+				"interval": 5,
+				"startTime": "2024-02-05T17:53:00",
+				"timeZone": "India Standard Time"
+			}
+		}
+	}
+}
