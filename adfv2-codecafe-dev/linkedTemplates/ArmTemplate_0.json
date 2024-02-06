@@ -489,7 +489,7 @@
 			"properties": {
 				"activities": [
 					{
-						"name": "Doctor Data Loading",
+						"name": "Doctor Data Load",
 						"type": "Copy",
 						"dependsOn": [],
 						"policy": {
@@ -696,7 +696,7 @@
 						"type": "Copy",
 						"dependsOn": [
 							{
-								"activity": "Doctor Data Loading",
+								"activity": "Doctor Data Load",
 								"dependencyConditions": [
 									"Completed"
 								]
