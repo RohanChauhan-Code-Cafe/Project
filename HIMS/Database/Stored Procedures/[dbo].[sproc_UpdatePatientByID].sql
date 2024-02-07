@@ -2,7 +2,7 @@ USE [HIMS]
 GO
 
 
-DROP PROCEDURE [dbo].[sproc_UpdateStaffByID]
+DROP PROCEDURE [dbo].[sproc_UpdatePatientByID]
 GO
 
 SET ANSI_NULLS ON
@@ -11,8 +11,8 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 
-CREATE PROC [dbo].[sproc_UpdateStaffByID]
-	@StaffID int,
+CREATE PROC [dbo].[sproc_UpdatePatientByID]
+	@PatientID int,
 	@Firstname [nvarchar](100),
 	@LastName [nvarchar](100),
 	@DOB [datetime],
@@ -26,7 +26,7 @@ CREATE PROC [dbo].[sproc_UpdateStaffByID]
 AS
 BEGIN
 
-UPDATE [dbo].[Staff] SET 
+UPDATE [dbo].[Patient] SET 
 	 [Firstname]=@Firstname
 	,[LastName]=@LastName
 	,[Address]=@Address
@@ -38,7 +38,7 @@ UPDATE [dbo].[Staff] SET
 	,[IsActive]=@IsActive
 	,[DateLastModified]=getdate()
 	,[ModifiedBy]='Admin'
-WHERE StaffID=@StaffID
+WHERE PatientID=@PatientID
 
 END
 GO
