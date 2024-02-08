@@ -1061,6 +1061,7 @@
 							},
 							"sink": {
 								"type": "SnowflakeSink",
+								"preCopyScript": "TRUNCATE TABLE SQL_RAW.Appointment;\n",
 								"importSettings": {
 									"type": "SnowflakeImportCopyCommand"
 								}
