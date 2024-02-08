@@ -1,0 +1,58 @@
+{
+	"name": "SqlServerDataSetAppointment",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SqlServerLinkedService",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [
+			{
+				"name": "AppointmentID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "DoctorID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "PatientID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "DateOfAppointment",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "DateAdded",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "AddedBy",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DateLastModified",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "ModifiedBy",
+				"type": "nvarchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "Appointment"
+		}
+	}
+}

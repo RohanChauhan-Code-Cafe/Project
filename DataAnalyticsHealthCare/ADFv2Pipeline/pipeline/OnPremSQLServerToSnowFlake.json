@@ -410,6 +410,136 @@
 						"type": "DatasetReference"
 					}
 				]
+			},
+			{
+				"name": "Appointment Data Loading",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlServerSource",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "SnowflakeSink",
+						"importSettings": {
+							"type": "SnowflakeImportCopyCommand"
+						}
+					},
+					"enableStaging": true,
+					"stagingSettings": {
+						"linkedServiceName": {
+							"referenceName": "BlobStorageLinkService",
+							"type": "LinkedServiceReference"
+						}
+					},
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "AppointmentID",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "APPOINTMENTID",
+									"type": "Int64"
+								}
+							},
+							{
+								"source": {
+									"name": "DoctorID",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "DOCTORID",
+									"type": "Int64"
+								}
+							},
+							{
+								"source": {
+									"name": "PatientID",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "PATIENTID",
+									"type": "Int64"
+								}
+							},
+							{
+								"source": {
+									"name": "DateOfAppointment",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "DATEOFAPPOINTMENT",
+									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"name": "DateAdded",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "DATEADDED",
+									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"name": "AddedBy",
+									"type": "String"
+								},
+								"sink": {
+									"name": "ADDEDBY",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "DateLastModified",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "DATELASTMODIFIED",
+									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"name": "ModifiedBy",
+									"type": "String"
+								},
+								"sink": {
+									"name": "MODIFIEDBY",
+									"type": "String"
+								}
+							}
+						]
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "SqlServerDataSetAppointment",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "SnowflakeDataSetAppointment",
+						"type": "DatasetReference"
+					}
+				]
 			}
 		],
 		"annotations": [],
