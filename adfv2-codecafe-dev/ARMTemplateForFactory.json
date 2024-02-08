@@ -442,6 +442,138 @@
 								"parameters": {}
 							}
 						]
+					},
+					{
+						"name": "Appointment Data Loading",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "SqlServerSource",
+								"queryTimeout": "02:00:00",
+								"partitionOption": "None"
+							},
+							"sink": {
+								"type": "SnowflakeSink",
+								"importSettings": {
+									"type": "SnowflakeImportCopyCommand"
+								}
+							},
+							"enableStaging": true,
+							"stagingSettings": {
+								"linkedServiceName": {
+									"referenceName": "BlobStorageLinkService",
+									"type": "LinkedServiceReference"
+								}
+							},
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"name": "AppointmentID",
+											"type": "Int32"
+										},
+										"sink": {
+											"name": "APPOINTMENTID",
+											"type": "Int64"
+										}
+									},
+									{
+										"source": {
+											"name": "DoctorID",
+											"type": "Int32"
+										},
+										"sink": {
+											"name": "DOCTORID",
+											"type": "Int64"
+										}
+									},
+									{
+										"source": {
+											"name": "PatientID",
+											"type": "Int32"
+										},
+										"sink": {
+											"name": "PATIENTID",
+											"type": "Int64"
+										}
+									},
+									{
+										"source": {
+											"name": "DateOfAppointment",
+											"type": "DateTime"
+										},
+										"sink": {
+											"name": "DATEOFAPPOINTMENT",
+											"type": "DateTime"
+										}
+									},
+									{
+										"source": {
+											"name": "DateAdded",
+											"type": "DateTime"
+										},
+										"sink": {
+											"name": "DATEADDED",
+											"type": "DateTime"
+										}
+									},
+									{
+										"source": {
+											"name": "AddedBy",
+											"type": "String"
+										},
+										"sink": {
+											"name": "ADDEDBY",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "DateLastModified",
+											"type": "DateTime"
+										},
+										"sink": {
+											"name": "DATELASTMODIFIED",
+											"type": "DateTime"
+										}
+									},
+									{
+										"source": {
+											"name": "ModifiedBy",
+											"type": "String"
+										},
+										"sink": {
+											"name": "MODIFIEDBY",
+											"type": "String"
+										}
+									}
+								]
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "SqlServerDataSetAppointment",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "SnowflakeDataSetAppointment",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
 					}
 				],
 				"policy": {
@@ -455,7 +587,79 @@
 				"[concat(variables('factoryId'), '/datasets/SnowflakeDataSetDoctor')]",
 				"[concat(variables('factoryId'), '/datasets/SqlServerDataSetPatient')]",
 				"[concat(variables('factoryId'), '/datasets/SnowflakeDataSetPatient')]",
+				"[concat(variables('factoryId'), '/datasets/SqlServerDataSetAppointment')]",
+				"[concat(variables('factoryId'), '/datasets/SnowflakeDataSetAppointment')]",
 				"[concat(variables('factoryId'), '/linkedServices/BlobStorageLinkService')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SnowflakeDataSetAppointment')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "SnowflakeLinkedService",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "SnowflakeTable",
+				"schema": [
+					{
+						"name": "APPOINTMENTID",
+						"type": "NUMBER",
+						"precision": 38,
+						"scale": 0
+					},
+					{
+						"name": "DOCTORID",
+						"type": "NUMBER",
+						"precision": 38,
+						"scale": 0
+					},
+					{
+						"name": "PATIENTID",
+						"type": "NUMBER",
+						"precision": 38,
+						"scale": 0
+					},
+					{
+						"name": "DATEOFAPPOINTMENT",
+						"type": "TIMESTAMP_NTZ",
+						"precision": 29,
+						"scale": 9
+					},
+					{
+						"name": "DATEADDED",
+						"type": "TIMESTAMP_NTZ",
+						"precision": 29,
+						"scale": 9
+					},
+					{
+						"name": "ADDEDBY",
+						"type": "VARCHAR",
+						"precision": 100,
+						"scale": 0
+					},
+					{
+						"name": "DATELASTMODIFIED",
+						"type": "TIMESTAMP_NTZ",
+						"precision": 29,
+						"scale": 9
+					},
+					{
+						"name": "MODIFIEDBY",
+						"type": "VARCHAR",
+						"precision": 100,
+						"scale": 0
+					}
+				],
+				"typeProperties": {
+					"schema": "SQL_RAW",
+					"table": "APPOINTMENT"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/SnowflakeLinkedService')]"
 			]
 		},
 		{
@@ -680,6 +884,69 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/SnowflakeLinkedService')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SqlServerDataSetAppointment')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "SqlServerLinkedService",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "SqlServerTable",
+				"schema": [
+					{
+						"name": "AppointmentID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "DoctorID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "PatientID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "DateOfAppointment",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "DateAdded",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "AddedBy",
+						"type": "nvarchar"
+					},
+					{
+						"name": "DateLastModified",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "ModifiedBy",
+						"type": "nvarchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "Appointment"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/SqlServerLinkedService')]"
 			]
 		},
 		{
