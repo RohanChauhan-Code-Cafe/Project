@@ -1,0 +1,53 @@
+{
+	"name": "SnowflakeDataSetSpeciality",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SnowflakeLinkedService",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SnowflakeTable",
+		"schema": [
+			{
+				"name": "APPOINTMENTID",
+				"type": "NUMBER",
+				"precision": 38,
+				"scale": 0
+			},
+			{
+				"name": "DESCRIPTION",
+				"type": "VARCHAR",
+				"precision": 100,
+				"scale": 0
+			},
+			{
+				"name": "DATEADDED",
+				"type": "TIMESTAMP_NTZ",
+				"precision": 29,
+				"scale": 9
+			},
+			{
+				"name": "ADDEDBY",
+				"type": "VARCHAR",
+				"precision": 100,
+				"scale": 0
+			},
+			{
+				"name": "DATELASTMODIFIED",
+				"type": "TIMESTAMP_NTZ",
+				"precision": 29,
+				"scale": 9
+			},
+			{
+				"name": "MODIFIEDBY",
+				"type": "VARCHAR",
+				"precision": 100,
+				"scale": 0
+			}
+		],
+		"typeProperties": {
+			"schema": "SQL_RAW",
+			"table": "SPECIALITY"
+		}
+	}
+}
