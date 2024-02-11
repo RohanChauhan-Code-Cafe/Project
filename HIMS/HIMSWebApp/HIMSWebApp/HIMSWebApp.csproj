@@ -182,15 +182,18 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PatientController.cs" />
     <Compile Include="Controllers\DoctorController.cs" />
+    <Compile Include="Controllers\SpecialityController.cs" />
     <Compile Include="DAL\AppointmentDAL.cs" />
     <Compile Include="DAL\PatientDAL.cs" />
     <Compile Include="DAL\DoctorDAL.cs" />
+    <Compile Include="DAL\SpecialityDAL.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Appointment.cs" />
     <Compile Include="Models\Patient.cs" />
     <Compile Include="Models\Doctor.cs" />
+    <Compile Include="Models\Speciality.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -263,6 +266,11 @@
     <Content Include="Views\Appointment\Details.cshtml" />
     <Content Include="Views\Appointment\Edit.cshtml" />
     <Content Include="Views\Appointment\Index.cshtml" />
+    <Content Include="Views\Speciality\Index.cshtml" />
+    <Content Include="Views\Speciality\Details.cshtml" />
+    <Content Include="Views\Speciality\Create.cshtml" />
+    <Content Include="Views\Speciality\Edit.cshtml" />
+    <Content Include="Views\Speciality\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
