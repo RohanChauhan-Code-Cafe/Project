@@ -1282,6 +1282,126 @@
 								"parameters": {}
 							}
 						]
+					},
+					{
+						"name": "Speciality Data Loading",
+						"type": "Copy",
+						"dependsOn": [
+							{
+								"activity": "Appointment Data Loading",
+								"dependencyConditions": [
+									"Completed"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "SqlServerSource",
+								"queryTimeout": "02:00:00",
+								"partitionOption": "None"
+							},
+							"sink": {
+								"type": "SnowflakeSink",
+								"preCopyScript": "TRUNCATE TABLE SQL_RAW.Speciality;\n",
+								"importSettings": {
+									"type": "SnowflakeImportCopyCommand"
+								}
+							},
+							"enableStaging": true,
+							"stagingSettings": {
+								"linkedServiceName": {
+									"referenceName": "BlobStorageLinkService",
+									"type": "LinkedServiceReference"
+								}
+							},
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"name": "SpecialityID",
+											"type": "Int32"
+										},
+										"sink": {
+											"name": "SPECIALITYID",
+											"type": "Int64"
+										}
+									},
+									{
+										"source": {
+											"name": "Description",
+											"type": "String"
+										},
+										"sink": {
+											"name": "DESCRIPTION",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "DateAdded",
+											"type": "DateTime"
+										},
+										"sink": {
+											"name": "DATEADDED",
+											"type": "DateTime"
+										}
+									},
+									{
+										"source": {
+											"name": "AddedBy",
+											"type": "String"
+										},
+										"sink": {
+											"name": "ADDEDBY",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "DateLastModified",
+											"type": "DateTime"
+										},
+										"sink": {
+											"name": "DATELASTMODIFIED",
+											"type": "DateTime"
+										}
+									},
+									{
+										"source": {
+											"name": "ModifiedBy",
+											"type": "String"
+										},
+										"sink": {
+											"name": "MODIFIEDBY",
+											"type": "String"
+										}
+									}
+								]
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "SqlServerDataSetSpeciality",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "SnowflakeDataSetSpeciality",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
 					}
 				],
 				"policy": {
@@ -1297,6 +1417,8 @@
 				"[concat(variables('factoryId'), '/datasets/SnowflakeDataSetPatient')]",
 				"[concat(variables('factoryId'), '/datasets/SqlServerDataSetAppointment')]",
 				"[concat(variables('factoryId'), '/datasets/SnowflakeDataSetAppointment')]",
+				"[concat(variables('factoryId'), '/datasets/SqlServerDataSetSpeciality')]",
+				"[concat(variables('factoryId'), '/datasets/SnowflakeDataSetSpeciality')]",
 				"[concat(variables('factoryId'), '/linkedServices/BlobStorageLinkService')]"
 			]
 		},
