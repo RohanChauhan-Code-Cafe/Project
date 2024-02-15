@@ -3,6 +3,7 @@ GO
 
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[Doctor]') AND type in (N'U'))
 DROP TABLE [dbo].[Doctor]
+
 GO
 
 SET ANSI_NULLS ON
@@ -15,6 +16,7 @@ CREATE TABLE [dbo].[Doctor](
 	[DoctorID] [int] IDENTITY(1,1) NOT NULL,
 	[Firstname] [nvarchar](100) NOT NULL,
 	[LastName] [nvarchar](100) NOT NULL,
+	[SpecialityID] int FOREIGN KEY REFERENCES Speciality(SpecialityID), 
 	[DOB] [datetime] NOT NULL,
 	[Address] [nvarchar](500) NULL,
 	[City] [nvarchar](100) NOT NULL,
