@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Doctor Data Loading",
+				"name": "Doctor Data Load",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
@@ -204,11 +204,11 @@
 				]
 			},
 			{
-				"name": "Patient Data Loading",
+				"name": "Patient Data Load",
 				"type": "Copy",
 				"dependsOn": [
 					{
-						"activity": "Doctor Data Loading",
+						"activity": "Doctor Data Load",
 						"dependencyConditions": [
 							"Completed"
 						]
@@ -412,11 +412,11 @@
 				]
 			},
 			{
-				"name": "Appointment Data Loading",
+				"name": "Appointment Data Load",
 				"type": "Copy",
 				"dependsOn": [
 					{
-						"activity": "Patient Data Loading",
+						"activity": "Patient Data Load",
 						"dependencyConditions": [
 							"Completed"
 						]
@@ -550,11 +550,11 @@
 				]
 			},
 			{
-				"name": "Speciality Data Loading",
+				"name": "Speciality Data Load",
 				"type": "Copy",
 				"dependsOn": [
 					{
-						"activity": "Appointment Data Loading",
+						"activity": "Appointment Data Load",
 						"dependencyConditions": [
 							"Completed"
 						]
