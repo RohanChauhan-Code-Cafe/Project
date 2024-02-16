@@ -25,6 +25,704 @@
 	},
 	"resources": [
 		{
+			"name": "[concat(parameters('factoryName'), '/OnPremSQLServerToSQLDB')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Doctor Data Load",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "SqlServerSource",
+								"queryTimeout": "02:00:00",
+								"partitionOption": "None"
+							},
+							"sink": {
+								"type": "SnowflakeSink",
+								"preCopyScript": "TRUNCATE TABLE SQL_RAW.DOCTOR;",
+								"importSettings": {
+									"type": "SnowflakeImportCopyCommand"
+								}
+							},
+							"enableStaging": true,
+							"stagingSettings": {
+								"linkedServiceName": {
+									"referenceName": "BlobStorageLinkService",
+									"type": "LinkedServiceReference"
+								}
+							},
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"name": "DoctorID",
+											"type": "Int32"
+										},
+										"sink": {
+											"name": "DOCTORID",
+											"type": "Int64"
+										}
+									},
+									{
+										"source": {
+											"name": "Firstname",
+											"type": "String"
+										},
+										"sink": {
+											"name": "FIRSTNAME",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "LastName",
+											"type": "String"
+										},
+										"sink": {
+											"name": "LASTNAME",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "DOB",
+											"type": "DateTime"
+										},
+										"sink": {
+											"name": "DOB",
+											"type": "DateTime"
+										}
+									},
+									{
+										"source": {
+											"name": "Address",
+											"type": "String"
+										},
+										"sink": {
+											"name": "ADDRESS",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "City",
+											"type": "String"
+										},
+										"sink": {
+											"name": "CITY",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "State",
+											"type": "String"
+										},
+										"sink": {
+											"name": "STATE",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "Country",
+											"type": "String"
+										},
+										"sink": {
+											"name": "COUNTRY",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "Zip",
+											"type": "String"
+										},
+										"sink": {
+											"name": "ZIP",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "MobileNumber",
+											"type": "String"
+										},
+										"sink": {
+											"name": "MOBILENUMBER",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "IsActive",
+											"type": "Boolean"
+										},
+										"sink": {
+											"name": "ISACTIVE",
+											"type": "Boolean"
+										}
+									},
+									{
+										"source": {
+											"name": "DateAdded",
+											"type": "DateTime"
+										},
+										"sink": {
+											"name": "DATEADDED",
+											"type": "DateTime"
+										}
+									},
+									{
+										"source": {
+											"name": "AddedBy",
+											"type": "String"
+										},
+										"sink": {
+											"name": "ADDEDBY",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "DateLastModified",
+											"type": "DateTime"
+										},
+										"sink": {
+											"name": "DATELASTMODIFIED",
+											"type": "DateTime"
+										}
+									},
+									{
+										"source": {
+											"name": "ModifiedBy",
+											"type": "String"
+										},
+										"sink": {
+											"name": "MODIFIEDBY",
+											"type": "String"
+										}
+									}
+								]
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "SqlServerDataSetDoctor",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "SnowflakeDataSetDoctor",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					},
+					{
+						"name": "Patient Data Load",
+						"type": "Copy",
+						"dependsOn": [
+							{
+								"activity": "Doctor Data Load",
+								"dependencyConditions": [
+									"Completed"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "SqlServerSource",
+								"queryTimeout": "02:00:00",
+								"partitionOption": "None"
+							},
+							"sink": {
+								"type": "SnowflakeSink",
+								"preCopyScript": "TRUNCATE TABLE SQL_RAW.Patient;\n",
+								"importSettings": {
+									"type": "SnowflakeImportCopyCommand"
+								}
+							},
+							"enableStaging": true,
+							"stagingSettings": {
+								"linkedServiceName": {
+									"referenceName": "BlobStorageLinkService",
+									"type": "LinkedServiceReference"
+								}
+							},
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"name": "PatientID",
+											"type": "Int32"
+										},
+										"sink": {
+											"name": "PATIENTID",
+											"type": "Int64"
+										}
+									},
+									{
+										"source": {
+											"name": "Firstname",
+											"type": "String"
+										},
+										"sink": {
+											"name": "FIRSTNAME",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "LastName",
+											"type": "String"
+										},
+										"sink": {
+											"name": "LASTNAME",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "DOB",
+											"type": "DateTime"
+										},
+										"sink": {
+											"name": "DOB",
+											"type": "DateTime"
+										}
+									},
+									{
+										"source": {
+											"name": "Address",
+											"type": "String"
+										},
+										"sink": {
+											"name": "ADDRESS",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "City",
+											"type": "String"
+										},
+										"sink": {
+											"name": "CITY",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "State",
+											"type": "String"
+										},
+										"sink": {
+											"name": "STATE",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "Country",
+											"type": "String"
+										},
+										"sink": {
+											"name": "COUNTRY",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "Zip",
+											"type": "String"
+										},
+										"sink": {
+											"name": "ZIP",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "MobileNumber",
+											"type": "String"
+										},
+										"sink": {
+											"name": "MOBILENUMBER",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "IsActive",
+											"type": "Boolean"
+										},
+										"sink": {
+											"name": "ISACTIVE",
+											"type": "Boolean"
+										}
+									},
+									{
+										"source": {
+											"name": "DateAdded",
+											"type": "DateTime"
+										},
+										"sink": {
+											"name": "DATEADDED",
+											"type": "DateTime"
+										}
+									},
+									{
+										"source": {
+											"name": "AddedBy",
+											"type": "String"
+										},
+										"sink": {
+											"name": "ADDEDBY",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "DateLastModified",
+											"type": "DateTime"
+										},
+										"sink": {
+											"name": "DATELASTMODIFIED",
+											"type": "DateTime"
+										}
+									},
+									{
+										"source": {
+											"name": "ModifiedBy",
+											"type": "String"
+										},
+										"sink": {
+											"name": "MODIFIEDBY",
+											"type": "String"
+										}
+									}
+								]
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "SqlServerDataSetPatient",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "SnowflakeDataSetPatient",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					},
+					{
+						"name": "Appointment Data Load",
+						"type": "Copy",
+						"dependsOn": [
+							{
+								"activity": "Patient Data Load",
+								"dependencyConditions": [
+									"Completed"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "SqlServerSource",
+								"queryTimeout": "02:00:00",
+								"partitionOption": "None"
+							},
+							"sink": {
+								"type": "SnowflakeSink",
+								"preCopyScript": "TRUNCATE TABLE SQL_RAW.Appointment;\n",
+								"importSettings": {
+									"type": "SnowflakeImportCopyCommand"
+								}
+							},
+							"enableStaging": true,
+							"stagingSettings": {
+								"linkedServiceName": {
+									"referenceName": "BlobStorageLinkService",
+									"type": "LinkedServiceReference"
+								}
+							},
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"name": "AppointmentID",
+											"type": "Int32"
+										},
+										"sink": {
+											"name": "APPOINTMENTID",
+											"type": "Int64"
+										}
+									},
+									{
+										"source": {
+											"name": "DoctorID",
+											"type": "Int32"
+										},
+										"sink": {
+											"name": "DOCTORID",
+											"type": "Int64"
+										}
+									},
+									{
+										"source": {
+											"name": "PatientID",
+											"type": "Int32"
+										},
+										"sink": {
+											"name": "PATIENTID",
+											"type": "Int64"
+										}
+									},
+									{
+										"source": {
+											"name": "DateOfAppointment",
+											"type": "DateTime"
+										},
+										"sink": {
+											"name": "DATEOFAPPOINTMENT",
+											"type": "DateTime"
+										}
+									},
+									{
+										"source": {
+											"name": "DateAdded",
+											"type": "DateTime"
+										},
+										"sink": {
+											"name": "DATEADDED",
+											"type": "DateTime"
+										}
+									},
+									{
+										"source": {
+											"name": "AddedBy",
+											"type": "String"
+										},
+										"sink": {
+											"name": "ADDEDBY",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "DateLastModified",
+											"type": "DateTime"
+										},
+										"sink": {
+											"name": "DATELASTMODIFIED",
+											"type": "DateTime"
+										}
+									},
+									{
+										"source": {
+											"name": "ModifiedBy",
+											"type": "String"
+										},
+										"sink": {
+											"name": "MODIFIEDBY",
+											"type": "String"
+										}
+									}
+								]
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "SqlServerDataSetAppointment",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "SnowflakeDataSetAppointment",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					},
+					{
+						"name": "Speciality Data Load",
+						"type": "Copy",
+						"dependsOn": [
+							{
+								"activity": "Appointment Data Load",
+								"dependencyConditions": [
+									"Completed"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "SqlServerSource",
+								"queryTimeout": "02:00:00",
+								"partitionOption": "None"
+							},
+							"sink": {
+								"type": "SnowflakeSink",
+								"preCopyScript": "TRUNCATE TABLE SQL_RAW.Speciality;\n",
+								"importSettings": {
+									"type": "SnowflakeImportCopyCommand"
+								}
+							},
+							"enableStaging": true,
+							"stagingSettings": {
+								"linkedServiceName": {
+									"referenceName": "BlobStorageLinkService",
+									"type": "LinkedServiceReference"
+								}
+							},
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"name": "SpecialityID",
+											"type": "Int32"
+										},
+										"sink": {
+											"name": "SPECIALITYID",
+											"type": "Int64"
+										}
+									},
+									{
+										"source": {
+											"name": "Description",
+											"type": "String"
+										},
+										"sink": {
+											"name": "DESCRIPTION",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "DateAdded",
+											"type": "DateTime"
+										},
+										"sink": {
+											"name": "DATEADDED",
+											"type": "DateTime"
+										}
+									},
+									{
+										"source": {
+											"name": "AddedBy",
+											"type": "String"
+										},
+										"sink": {
+											"name": "ADDEDBY",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "DateLastModified",
+											"type": "DateTime"
+										},
+										"sink": {
+											"name": "DATELASTMODIFIED",
+											"type": "DateTime"
+										}
+									},
+									{
+										"source": {
+											"name": "ModifiedBy",
+											"type": "String"
+										},
+										"sink": {
+											"name": "MODIFIEDBY",
+											"type": "String"
+										}
+									}
+								]
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "SqlServerDataSetSpeciality",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "SnowflakeDataSetSpeciality",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"annotations": [],
+				"lastPublishTime": "2024-02-06T09:02:40Z"
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/SqlServerDataSetDoctor')]",
+				"[concat(variables('factoryId'), '/datasets/SnowflakeDataSetDoctor')]",
+				"[concat(variables('factoryId'), '/datasets/SqlServerDataSetPatient')]",
+				"[concat(variables('factoryId'), '/datasets/SnowflakeDataSetPatient')]",
+				"[concat(variables('factoryId'), '/datasets/SqlServerDataSetAppointment')]",
+				"[concat(variables('factoryId'), '/datasets/SnowflakeDataSetAppointment')]",
+				"[concat(variables('factoryId'), '/datasets/SqlServerDataSetSpeciality')]",
+				"[concat(variables('factoryId'), '/datasets/SnowflakeDataSetSpeciality')]",
+				"[concat(variables('factoryId'), '/linkedServices/BlobStorageLinkService')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/OnPremSQLServerToSnowFlake')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
