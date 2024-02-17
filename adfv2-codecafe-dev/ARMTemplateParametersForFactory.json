@@ -11,6 +11,9 @@
 		"SqlServerLinkedService_connectionString": {
 			"value": ""
 		},
+		"AzureSqlDatabaseLinkedServices_connectionString": {
+			"value": ""
+		},
 		"BlobStorageLinkService_sasUri": {
 			"value": ""
 		}

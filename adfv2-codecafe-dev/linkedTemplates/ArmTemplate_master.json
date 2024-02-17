@@ -15,6 +15,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'SqlServerLinkedService'"
 		},
+		"AzureSqlDatabaseLinkedServices_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureSqlDatabaseLinkedServices'"
+		},
 		"BlobStorageLinkService_sasUri": {
 			"type": "secureString",
 			"metadata": "Secure string for 'sasUri' of 'BlobStorageLinkService'"
@@ -48,6 +52,9 @@
 					},
 					"SnowflakeLinkedService_connectionString": {
 						"value": "[parameters('SnowflakeLinkedService_connectionString')]"
+					},
+					"AzureSqlDatabaseLinkedServices_connectionString": {
+						"value": "[parameters('AzureSqlDatabaseLinkedServices_connectionString')]"
 					},
 					"SqlServerLinkedService_connectionString": {
 						"value": "[parameters('SqlServerLinkedService_connectionString')]"
